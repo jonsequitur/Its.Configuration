@@ -6,6 +6,7 @@ configuration:
 
 build:
   project: Its.Configuration.sln
+  publish_nuget: true
 
 test:
   assemblies:
