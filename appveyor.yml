@@ -1,0 +1,24 @@
+install:
+  - nuget restore
+
+configuration:
+  - Release
+
+build:
+  project: Its.Configuration.sln
+
+test:
+  assemblies:
+    - '**\*Tests.dll'
+
+artifacts:
+  - path: Configuration\bin
+    name: Its.Configuration
+
+  - path: Configuration.Console\bin
+    name: Its.Configuration.Console
+
+  - path: Configuration.Features\bin
+    name: Its.Configuration.Features
+
+  - path: its.config.js
