@@ -1,0 +1,105 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="cs" #>
+<#@ assembly name="System.ComponentModel.Composition"#>
+<#@ assembly name="System.Core"#>
+<#@ assembly name="System.Xml"#>
+<#@ assembly name="System.Web"#>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="$(TargetDir)\Its.Configuration.dll" #>
+<#@ import namespace="System"#>
+<#@ import namespace="System.IO"#>
+<#@ import namespace="System.Collections.Generic"#>
+<#@ import namespace="System.ComponentModel.Composition"#>
+<#@ import namespace="System.ComponentModel.Composition.Hosting"#>
+<#@ import namespace="System.ComponentModel.Composition.ReflectionModel"#>
+<#@ import namespace="System.Linq"#>
+<#@ import namespace="System.Reflection"#>
+<#@ import namespace="System.Text"#>
+<#@ import namespace="System.Text.RegularExpressions"#>
+<#@ import namespace="System.Xml"#>
+<#@ import namespace="System.Xml.Linq"#>
+<#@ import namespace="Its.Configuration"#>
+
+// ----------------------------------------------------------------------------------------------------
+// THIS .CS FILE WAS GENERATED USING T4. DO NOT EDIT IT DIRECTLY--EDIT THE ASSOCIATED .TT FILE INSTEAD.
+// ----------------------------------------------------------------------------------------------------
+<#
+	// copy the binaries to another location to avoid file locks interfering with the build
+	var binPath = Path.GetFullPath(Host.ResolvePath(@".")) + @"\bin\debug";
+	string tempPath;
+	int i = 0; 
+	do
+	{
+		i++;
+		tempPath = binPath.Replace(@"\debug", "") + @"\its-configuration-temp-" + i;
+		try { Directory.Delete(tempPath, true); } catch { }
+	} while (Directory.Exists(tempPath));
+	Directory.CreateDirectory(tempPath);
+	foreach (var f in Directory.GetFiles(binPath))
+	{
+		var file = Path.GetFileName(f);
+		var from = Path.Combine(binPath, file);
+		var to = Path.Combine(tempPath, file);
+		File.Copy(from, to);
+	}
+	var contracts = CompositionExtensions.FindImports(new System.IO.DirectoryInfo(tempPath));
+#>
+using System;
+using System.ComponentModel.Composition;
+
+namespace ImportedConfigurations
+{
+// This class has been assembled from the aggregate Imports found in the following assemblies found in <#= binPath #>: 
+<#= string.Join(",", new DirectoryInfo(tempPath).GetFiles("*.dll").Select(f => Environment.NewLine + "//     " + f)) #>
+	[global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+    public partial class Configurations
+    {
+		// Properties derived from Import statements within the target assemblies
+<# 
+var configs = contracts
+					.OrderBy(c => c.Name)
+					.ToArray();
+var written = new HashSet<string>();
+
+foreach (var config in configs) { #>
+		<#
+			string typeName;
+			if (config.ExpectedType.IsGenericParameter)
+			{
+				typeName = "object";
+			} 
+			else 
+			{
+				typeName = config.ExpectedType.ToString();
+			}
+
+			var isGenericType = config.ExpectedType.IsGenericType;
+
+			if (written.Contains(config.Name)) 
+			{
+				continue;
+			} else 
+			{
+				written.Add(config.Name);			
+			}
+
+			typeName = typeName	.Replace("`1[", "<")
+								.Replace("]", ">");
+
+			// when a config key is being imported in different places using different types, comment out the IObservable & Nullable variants
+			var commentOut = (isGenericType) ? 
+								"//" : 
+								"";
+		#>
+
+<#= commentOut #>		[Import("<#= config.Name #>", typeof(<#=typeName#>))]
+<#= commentOut #>		public virtual <#= typeName #> <#= 
+			// replace non-compilable characters to create the member name from the config key name
+			config.Name
+				.Replace("-", "_")
+				.Replace(" ", "_")
+		#> { get; set; }
+<# } #>
+    }
+}

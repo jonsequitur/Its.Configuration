@@ -1,0 +1,9 @@
+*.DotSettings
+*.ncrunchsolution
+*.suo
+*.user
+bin/
+obj/
+packages/
+TestResults/
+_ReSharper.*

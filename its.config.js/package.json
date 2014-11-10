@@ -1,0 +1,26 @@
+{
+  "name": "its.config",
+  "version": "0.1.0",
+  "description": "Its.Configuration's Settings<T> for JavaScript environments that support CommonJS Modules",
+  "keywords": [
+    "Its",
+    "Its.Configuration",
+    "node",
+    "phantomjs",
+    "CasperJS",
+    "config",
+    "configuration"
+  ],
+  "author": "Nathan Black <nblack@microsoft.com>",
+  "main": "./its.config.js",
+  "devDependencies": {
+    "mocha": ">= 1.13.0",
+    "chai": "1.8.x",
+    "mockery": "1.4.x"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "readme": "read the unit tests",
+  "license": "MSFT-Internal"
+}

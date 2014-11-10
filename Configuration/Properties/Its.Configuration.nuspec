@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Its.Configuration</id>
+    <title>Its.Configuration</title>
+    <version>0.10.1</version>
+    <authors>Microsoft, jonsequitur</authors>
+    <owners>Microsoft, jonsequitur</owners>
+    <projectUrl>http://codebox/itsconfiguration</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.</description>
+    <tags>configuration encryption Azure</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.Composition"  />
+      <frameworkAssembly assemblyName="System.Web.Extensions"  />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="Its.Configuration.dll" target="lib\net40" />
+    <file src="Its.Configuration.pdb" target="lib\net40" />
+    <file src="Its.Configuration.xml" target="lib\net40" />
+  </files>
+</package>

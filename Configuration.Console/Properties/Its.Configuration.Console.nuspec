@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Its.Configuration.Console</id>
+    <title>Its.Configuration.Console</title>
+    <version>0.9.2-beta</version>
+    <authors>Microsoft, jonsequitur</authors>
+    <owners>Microsoft, jonsequitur</owners>
+    <projectUrl>http://codebox/itsconfiguration</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Command line utility for Its.Configuration.</description>
+    <tags>configuration command line encryption Azure</tags>
+  </metadata>
+  <files>
+    <file src="*" target="tools\console" />
+  </files>
+</package>

@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7823E496-E938-49D2-BB46-01215268442B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Its.Configuration.Tests</RootNamespace>
+    <AssemblyName>Its.Configuration.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\Its.Configuration.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentAssertions, Version=2.0.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentAssertions.2.0.1\lib\net40\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Reactive.Testing">
+      <HintPath>..\packages\Rx-Testing.2.2.2\lib\net40\Microsoft.Reactive.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.2.2\lib\net40\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.2.2\lib\net40\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.2.2\lib\net40\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.3\lib\net40\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="%28Its.Recipes%29\AnonymousDisposable.cs" />
+    <Compile Include="%28Its.Recipes%29\System.Linq.Expressions\MappingExpression.cs" />
+    <Compile Include="%28Its.Recipes%29\WebStart.cs" />
+    <Compile Include="..\ProductInfo.cs">
+      <Link>Properties\ProductInfo.cs</Link>
+    </Compile>
+    <Compile Include="EncryptedSettingsTests.cs" />
+    <Compile Include="SelfVerificationTests.cs" />
+    <None Include=".alternateConfig\EnvironmentSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\certificate-store-based-crypto-test\Credentials.json.secure">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\file-based-crypto-test\Credentials.json.secure">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\file-based-crypto-test\ItsConfigurationTest.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\file-based-crypto-collision-test\Credentials.json.secure">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\internal\DbConnectionSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\OnlyConfiguredInRootFolder.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\file-based-crypto-collision-test\Credentials.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\production\DbConnectionSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\production\EnvironmentSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\test\EnvironmentSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".config\EnvironmentSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include=".config\EnvironmentSettings.cs" />
+    <Compile Include="AssertExtensions.cs" />
+    <Compile Include="Configurations.cs">
+      <DependentUpon>Configurations.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="EnumerableExtensionsTests.cs" />
+    <Compile Include="Features\FeatureRegistryTests.cs" />
+    <Compile Include="Features\FeatureOfTTests.cs" />
+    <Compile Include="Features\TestClasses\ActivatableFeature.cs" />
+    <Compile Include="Features\TestClasses\DuckTypedFeature.cs" />
+    <Compile Include="Features\TestClasses\SecondaryFeature.cs" />
+    <Compile Include="Features\TestClasses\PrimaryFeature.cs" />
+    <Compile Include="Features\FeatureActivatorTests.cs" />
+    <Compile Include="JsonExtensions.cs" />
+    <Compile Include="SettingsTests.cs" />
+    <Compile Include="Generator\CsdefGeneratorTests.cs" />
+    <Compile Include="SatisfyImportsTests.cs" />
+    <Compile Include="ConfigValueExportProviderTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test classes\ImageRepository.cs" />
+    <Compile Include="Test classes\OrderRepository.cs" />
+    <Compile Include="Test classes\ProductRepository.cs" />
+    <Compile Include="Test classes\SomeEnum.cs" />
+    <Compile Include="Test classes\SomethingConfigurable.cs" />
+    <Compile Include="FindImportsTests.cs" />
+    <Compile Include="Test classes\SomethingConfigurableAndStatic.cs" />
+    <Compile Include="Test classes\SomethingConfigurableAndStaticHavingSpecialTypes.cs" />
+    <Compile Include="Test classes\SomethingConfigurableHavingStaticProperties.cs" />
+    <Compile Include="Test classes\SomethingConfigurableWithEnumMembers.cs" />
+    <Compile Include="Test classes\SomethingWithNonPublicConfigurables.cs" />
+    <Compile Include="Timer.cs" />
+    <Compile Include="TypeConversionTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Configurations.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Configurations.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Configuration.Features\Its.Configuration.Features.csproj">
+      <Project>{13096d71-0cc8-4c3c-82c0-bb01278a3683}</Project>
+      <Name>Its.Configuration.Features</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration\Its.Configuration.csproj">
+      <Project>{0D4A1239-8443-4D52-9155-46EAAFC98B9A}</Project>
+      <Name>Its.Configuration</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

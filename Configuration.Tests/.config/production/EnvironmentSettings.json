@@ -1,0 +1,5 @@
+﻿{
+ 	"Name":"production",
+    "IsLocal":"false",
+	"IsTest":"false"
+}
