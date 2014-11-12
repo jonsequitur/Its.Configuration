@@ -19,8 +19,8 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="Its.Configuration.Features.dll" target="lib\net40" />
-    <file src="Its.Configuration.Features.pdb" target="lib\net40" />
-    <file src="Its.Configuration.Features.xml" target="lib\net40" />
+    <file src="**\Its.Configuration.Features.dll" target="lib\net40" />
+    <file src="**\Its.Configuration.Features.pdb" target="lib\net40" />
+    <file src="**\Its.Configuration.Features.xml" target="lib\net40" />
   </files>
 </package>
