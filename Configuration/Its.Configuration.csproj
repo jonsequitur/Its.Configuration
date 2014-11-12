@@ -86,7 +86,7 @@
     <Compile Include="UpdateableConfigExport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\Its.Configuration.nuspec">
+    <None Include="Its.Configuration.nuspec">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

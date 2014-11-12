@@ -60,7 +60,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\Its.Configuration.Console.nuspec">
+    <None Include="Its.Configuration.Console.nuspec">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
