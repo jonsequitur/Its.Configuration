@@ -1,5 +1,5 @@
 {
-  "name": "its.config",
+  "name": "its-config",
   "version": "0.1.0",
   "description": "Its.Configuration's Settings<T> for JavaScript environments that support CommonJS Modules",
   "keywords": [
@@ -11,16 +11,17 @@
     "config",
     "configuration"
   ],
-  "author": "Nathan Black <nblack@microsoft.com>",
+  "author": "Nathan Black <nathan@nathanblack.org>",
   "main": "./its.config.js",
   "devDependencies": {
-    "mocha": ">= 1.13.0",
     "chai": "1.8.x",
+    "mocha": ">= 1.13.0",
+    "mocha-appveyor-reporter": "^0.1.0",
     "mockery": "1.4.x"
   },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha -R mocha-appveyor --no-exit"
   },
-  "readme": "read the unit tests",
-  "license": "MSFT-Internal"
+  "readme": "Simple precedence-based configuration loading",
+  "license": "MIT"
 }

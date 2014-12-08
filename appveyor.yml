@@ -1,5 +1,6 @@
 install:
   - nuget restore
+  - `cmd /c "cd its.config.js && npm install"`
 
 configuration:
   - Release
@@ -11,6 +12,9 @@ build:
 test:
   assemblies:
     - '**\*Tests.dll'
+
+after_test:
+  - `cmd /c "cd its.config.js && npm test"`
 
 artifacts:
   - path: Configuration.Console\bin
