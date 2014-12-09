@@ -15,9 +15,4 @@
       <frameworkAssembly assemblyName="System.Web.Extensions"  />
     </frameworkAssemblies>
   </metadata>
-  <files>
-    <file src="**\Its.Configuration.dll" target="lib\net40" />
-    <file src="**\Its.Configuration.pdb" target="lib\net40" />
-    <file src="**\Its.Configuration.xml" target="lib\net40" />
-  </files>
 </package>
