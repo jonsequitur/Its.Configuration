@@ -15,12 +15,12 @@
   "main": "./its.config.js",
   "devDependencies": {
     "chai": "1.8.x",
-    "mocha": ">= 1.13.0",
+    "mocha": "^2.0.1",
     "mocha-appveyor-reporter": "^0.1.0",
     "mockery": "1.4.x"
   },
   "scripts": {
-    "test": "mocha -R mocha-appveyor --no-exit"
+    "test": "mocha -R mocha-appveyor-reporter --no-exit"
   },
   "readme": "Simple precedence-based configuration loading",
   "license": "MIT"
