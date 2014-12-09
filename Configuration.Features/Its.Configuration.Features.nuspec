@@ -6,7 +6,8 @@
     <version>0.9.2-beta</version>
     <authors>Microsoft, jonsequitur</authors>
     <owners>Microsoft, jonsequitur</owners>
-    <projectUrl>http://codebox/itsconfiguration</projectUrl>
+    <projectUrl>https://github.com/jonsequitur/Its.Configuration</projectUrl>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Feature activation and deactivation and module-based, discoverable configuration.</description>
     <tags>configuration composition</tags>
@@ -18,9 +19,4 @@
       <frameworkAssembly assemblyName="System.ComponentModel.Composition"  />
     </frameworkAssemblies>
   </metadata>
-  <files>
-    <file src="**\Its.Configuration.Features.dll" target="lib\net40" />
-    <file src="**\Its.Configuration.Features.pdb" target="lib\net40" />
-    <file src="**\Its.Configuration.Features.xml" target="lib\net40" />
-  </files>
 </package>

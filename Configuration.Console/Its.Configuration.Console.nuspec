@@ -6,7 +6,8 @@
     <version>0.9.2-beta</version>
     <authors>Microsoft, jonsequitur</authors>
     <owners>Microsoft, jonsequitur</owners>
-    <projectUrl>http://codebox/itsconfiguration</projectUrl>
+    <projectUrl>https://github.com/jonsequitur/Its.Configuration</projectUrl>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Command line utility for Its.Configuration.</description>
     <tags>configuration command line encryption Azure</tags>

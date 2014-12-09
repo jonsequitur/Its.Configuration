@@ -6,8 +6,9 @@
     <version>0.10.1</version>
     <authors>Microsoft, jonsequitur</authors>
     <owners>Microsoft, jonsequitur</owners>
-    <projectUrl>http://codebox/itsconfiguration</projectUrl>
+    <projectUrl>https://github.com/jonsequitur/Its.Configuration</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <description>App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.</description>
     <tags>configuration encryption Azure</tags>
     <frameworkAssemblies>

@@ -33,7 +33,7 @@ namespace Its.Recipes
     ///     4. When the observable is subscribed, either:
     ///     * initialize your feature and return true, or
     ///     * don't initialize your feature, and return false.
-    ///     The convention used by this class can also be used by Its.Configuration (http://codebox/itsconfiguration) allowing more complex startup processes, including dependency injection and feature activation dependency chains.
+    ///     The convention used by this class can also be used by Its.Configuration (https://github.com/jonsequitur/Its.Configuration) allowing more complex startup processes, including dependency injection and feature activation dependency chains.
     /// </remarks>
     public static class WebStart
     {
