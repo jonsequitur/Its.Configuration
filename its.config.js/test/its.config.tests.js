@@ -8,10 +8,10 @@ describe('its-config', function() {
       warnOnReplace: false
     })
 
-    mockery.registerMock('../.config/car', {
+    mockery.registerMock('../../.config/car', {
       color: 'blue'
     })
-    mockery.registerMock('../.config/bob/car', {
+    mockery.registerMock('../../.config/bob/car', {
       make: 'Honda',
       model: 'Civic',
       options: {
@@ -19,7 +19,7 @@ describe('its-config', function() {
         roof: 'moonroof'
       }
     })
-    mockery.registerMock('../.config/jane/car', {
+    mockery.registerMock('../../.config/jane/car', {
       make: 'Ford',
       model: 'Bronco',
       options: {
@@ -27,10 +27,10 @@ describe('its-config', function() {
         roof: 'sunroof'
       }
     })
-    mockery.registerMock('../.config/low-on-gas/car', {
+    mockery.registerMock('../../.config/low-on-gas/car', {
       gasRemaning: 0.1
     })
-    mockery.registerMock('../.config/power-package/car', {
+    mockery.registerMock('../../.config/power-package/car', {
       options: {
         'power-steering': true,
         'power-windows': true
