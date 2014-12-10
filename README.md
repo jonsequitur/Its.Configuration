@@ -1,4 +1,4 @@
-## Convention-based, dependency-inverted, and compiler-verified configuration. 
+## App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.
 
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/jonsequitur/Its.Configuration)](https://ci.appveyor.com/project/jonsequitur/its-configuration)
 
