@@ -61,11 +61,25 @@ Since `AccountName` and `AccountKey` go together, this approach is bit more orga
 
 The standard setup for your configurations is in a set of files in your project under a folder called `.config`. 
 
-[image:configfolder.png]
+```
+<project root>
+|
+└───\.config
+    |
+    └───\internal
+        |
+        └───AzureStorageSettings.json
+    |
+    └───\local
+    |
+    └───\production
+        |
+        └───AzureStorageSettings.json
+    |
+    └───\test    
+```
 
-These files are set up to be copied to the project output so that they will be included in your deployment. 
-
-[image:copyifnewer.png]
+These files should be copied to the project output so that they will be included in your deployment. 
 
 The names of these folders are up to you. You can use them to define categories across which some of your configurations might differ, for example environments, data centers, operating modes, testing stages, etc. 
 
