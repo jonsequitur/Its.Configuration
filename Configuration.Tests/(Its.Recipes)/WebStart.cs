@@ -1,7 +1,5 @@
 ﻿// THIS FILE IS NOT INTENDED TO BE EDITED. 
 // 
-// It has been imported using NuGet from the Its.Recipes project (http://codebox/ItsRecipes). 
-// 
 // This file can be updated in-place using the Package Manager Console. To check for updates, run the following command:
 // 
 // PM> Get-Package -Updates
