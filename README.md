@@ -1,4 +1,4 @@
-## Convention-based, dependency-inverted, and compiler-verified configuration. 
+## App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.
 
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/jonsequitur/Its.Configuration)](https://ci.appveyor.com/project/jonsequitur/its-configuration)
 
@@ -61,11 +61,25 @@ Since `AccountName` and `AccountKey` go together, this approach is bit more orga
 
 The standard setup for your configurations is in a set of files in your project under a folder called `.config`. 
 
-[image:configfolder.png]
+```
+<project root>
+|
+└───\.config
+    |
+    └───\internal
+        |
+        └───AzureStorageSettings.json
+    |
+    └───\local
+    |
+    └───\production
+        |
+        └───AzureStorageSettings.json
+    |
+    └───\test    
+```
 
-These files are set up to be copied to the project output so that they will be included in your deployment. 
-
-[image:copyifnewer.png]
+These files should be copied to the project output so that they will be included in your deployment. 
 
 The names of these folders are up to you. You can use them to define categories across which some of your configurations might differ, for example environments, data centers, operating modes, testing stages, etc. 
 
