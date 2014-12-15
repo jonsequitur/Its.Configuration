@@ -1,4 +1,7 @@
-﻿// slightly modified from: https://github.com/Azure/azure-sdk-for-net/
+// Copyright (c) Microsoft. All rights reserved. 
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+// slightly modified from: https://github.com/Azure/azure-sdk-for-net/
 //
 // Copyright Microsoft Corporation
 // 
