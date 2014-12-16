@@ -140,10 +140,10 @@ So if more than one of these approaches is used, what's _their_ precedence? It's
 
 1. Programmatic
 2. Environment variable
-3. .cscfg
-4. web.config / app.config
+3. `.cscfg`
+4. `web.config` / `app.config`
 
-In practice, for an Azure-deployed web application, this means we set the precedence for local development in web.config, for deployment as an Azure cloud service in the .cscfg, and for deployment to Azure Web Sites using an environment variable set via the Azure Management Portal.
+In practice, for an Azure-deployed web application, this means we set the precedence for local development in web.config, for deployment as an Azure cloud service in the ```.cscfg```, and for deployment to Azure Web Sites using an environment variable set via the Azure Management Portal.
 
 By changing the precedence setting, you can switch to an entirely different configuration with a single change. Want to debug your production topology locally? Switch the precedence to "production" on your local machine.
 
@@ -158,12 +158,12 @@ As you may have inferred, Its.Configuration is able to read Azure configuration 
 You can use this method to directly look up a value from the following settings sources. It will return the first one that matches, in this order:
 
 1. Environment variable
-2. .cscfg
-3. web.config / app.config
+2. `.cscfg`
+3. `web.config` / `app.config`
 
 #### Security
 
 If a JSON file's contents are encrypted and `.secure` is appended to the filename, then `Settings.Get<T>()` will transparently decrypt the contents in order to deserialize your settings class. It uses the `System.Security.Cryptography.Pkcs.EnvelopedCms` class. Any certificate found in the local machine/personal certificate store is a candidate. You do not need to specify a certificate, as `EnvelopedCms` handles that.  
 
-The Its.Configuration command line tool can be used to encrypt and decrypt files. This is mainly a convenience. You can also use EnvelopedCms via PowerShell, or use the Encrypt and Decrypt methods found in Its.Configuration.CryptographyExtensions.
+The Its.Configuration command line tool can be used to encrypt and decrypt files. This is mainly a convenience. You can also use `EnvelopedCms` via PowerShell, or use the `Encrypt` and `Decrypt` methods found in `Its.Configuration.CryptographyExtensions`.
 
