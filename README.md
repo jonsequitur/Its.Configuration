@@ -1,6 +1,6 @@
 ## App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.
 
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/jonsequitur/Its.Configuration)](https://ci.appveyor.com/project/jonsequitur/its-configuration)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/jonsequitur/Its.Configuration?svg=true&branch=master)](https://ci.appveyor.com/project/jonsequitur/its-configuration)
 
 Most bugs in deployed services arise from configuration errors. Configuration in .NET usually consists of code calling ConfigurationManager.AppSettings or RoleEnvironment.GetConfigurationSettingValue to get a keyed value from an XML file, and casting it to an expected type. This tends to fail at a number of points: missing values, unconvertable values, non-obvious default behaviors. Managing configurations for diverse environments tends to amplify these problems. And of course Azure has a different configuration mechanism from vanilla ASP.NET applications.
 
