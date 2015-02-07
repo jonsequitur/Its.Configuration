@@ -67,13 +67,13 @@ namespace Its.Configuration.Console
         {
             if (!string.IsNullOrWhiteSpace(parameters.FileSpec) && !string.IsNullOrWhiteSpace(parameters.Text))
             {
-                System.Console.WriteLine("You cannot specify both the /f and /t switches.");
+                System.Console.Error.WriteLine("You cannot specify both the /f and /t switches.");
                 Environment.Exit(1);
             }
 
             if (string.IsNullOrWhiteSpace(parameters.FileSpec) && string.IsNullOrWhiteSpace(parameters.Text))
             {
-                System.Console.WriteLine("You must specify either the /f or /t switch.");
+                System.Console.Error.WriteLine("You must specify either the /f or /t switch.");
                 Environment.Exit(1);
             }
         }
