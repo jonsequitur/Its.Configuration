@@ -6,7 +6,7 @@ using CmdLine;
 namespace Its.Configuration.Console
 {
     [CommandLineArguments(
-        Program = "Its.Configuration.Console",
+        Program = "itsconfig",
         Title = "Its.Configuration utility console")]
     public class ConsoleParameters
     {
