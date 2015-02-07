@@ -29,9 +29,8 @@ namespace Its.Configuration.Console
             }
             catch (CommandLineException exception)
             {
-                // Some other kind of command line error 
-                CommandLine.WriteLineColor(ConsoleColor.Red, exception.ArgumentHelp.Message);
-                CommandLine.WriteLineColor(ConsoleColor.Cyan, exception.ArgumentHelp.GetHelpText(System.Console.BufferWidth));
+                System.Console.Error.WriteLine("!! {0}\n", exception.ArgumentHelp.Message);
+                System.Console.Error.WriteLine(exception.ArgumentHelp.GetHelpText(System.Console.BufferWidth));
                 Environment.Exit(1);
             }
 
@@ -42,7 +41,7 @@ namespace Its.Configuration.Console
             }
             catch (Exception exception)
             {
-                CommandLine.WriteLineColor(ConsoleColor.Red, exception.ToString());
+                System.Console.Error.WriteLine(exception.ToString());
                 Environment.Exit(1);
             }
         }
@@ -67,8 +66,7 @@ namespace Its.Configuration.Console
 
                     break;
                 default:
-                    CommandLine.WriteLineColor(ConsoleColor.Red,
-                                               string.Format("Command {0} not supported.", parameters.Command));
+                    System.Console.Error.WriteLine("Command {0} not supported.", parameters.Command);
                     Environment.Exit(1);
                     break;
             }
