@@ -3,7 +3,7 @@
   <metadata>
     <id>Its.Configuration</id>
     <title>Its.Configuration</title>
-    <version>0.10.1</version>
+    <version>1.0.0-beta</version>
     <authors>Microsoft, jonsequitur</authors>
     <owners>Microsoft, jonsequitur</owners>
     <projectUrl>https://github.com/jonsequitur/Its.Configuration</projectUrl>
@@ -12,7 +12,6 @@
     <description>App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.</description>
     <tags>configuration encryption Azure</tags>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.ComponentModel.Composition"  />
       <frameworkAssembly assemblyName="System.Web.Extensions"  />
     </frameworkAssemblies>
   </metadata>

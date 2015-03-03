@@ -151,23 +151,18 @@
     <Compile Include="Features\FeatureActivatorTests.cs" />
     <Compile Include="JsonExtensions.cs" />
     <Compile Include="SettingsTests.cs" />
-    <Compile Include="Generator\CsdefGeneratorTests.cs" />
-    <Compile Include="SatisfyImportsTests.cs" />
-    <Compile Include="ConfigValueExportProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test classes\ImageRepository.cs" />
     <Compile Include="Test classes\OrderRepository.cs" />
     <Compile Include="Test classes\ProductRepository.cs" />
     <Compile Include="Test classes\SomeEnum.cs" />
     <Compile Include="Test classes\SomethingConfigurable.cs" />
-    <Compile Include="FindImportsTests.cs" />
     <Compile Include="Test classes\SomethingConfigurableAndStatic.cs" />
     <Compile Include="Test classes\SomethingConfigurableAndStaticHavingSpecialTypes.cs" />
     <Compile Include="Test classes\SomethingConfigurableHavingStaticProperties.cs" />
     <Compile Include="Test classes\SomethingConfigurableWithEnumMembers.cs" />
     <Compile Include="Test classes\SomethingWithNonPublicConfigurables.cs" />
     <Compile Include="Timer.cs" />
-    <Compile Include="TypeConversionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
