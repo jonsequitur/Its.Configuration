@@ -11,8 +11,8 @@
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <description>App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.</description>
     <tags>configuration encryption Azure</tags>
-    <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Web.Extensions"  />
-    </frameworkAssemblies>
+    <dependencies>
+      <dependency id="NewtonSoft.Json" version="[6.0.8,)" />
+    </dependencies>
   </metadata>
 </package>

@@ -9,8 +9,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security;
-using System.Web.Script.Serialization;
 using Its.Recipes;
+using Newtonsoft.Json;
 
 namespace Its.Configuration
 {
@@ -109,15 +109,11 @@ namespace Its.Configuration
         }
 
         /// <summary>
-        ///     Implements the default settings deserialization method, which is to deserialize the specified string using
-        ///     <see
-        ///         cref="JavaScriptSerializer" />
-        ///     .
+        ///     Implements the default settings deserialization method, which is to deserialize the specified string using NewtonSoft.Json.
         /// </summary>
         public static object DeserializeDefault(Type targetType, string serialized)
         {
-            var serializer = new JavaScriptSerializer();
-            return serializer.Deserialize(serialized, targetType);
+            return JsonConvert.DeserializeObject(serialized, targetType);
         }
 
         /// <summary>
