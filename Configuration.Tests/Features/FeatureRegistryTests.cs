@@ -99,23 +99,6 @@ namespace Its.Configuration.Tests.Features
         }
 
         [Test]
-        public void Features_can_be_queried_for_selective_registration()
-        {
-            Assert.That(
-                new AppDomainCatalog().FeatureTypes().Count(),
-                Is.EqualTo(4));
-        }
-
-        [Test]
-        public void Querying_features_does_not_instantiate_them()
-        {
-            new AppDomainCatalog().FeatureTypes().ToArray();
-
-            Assert.That(PrimaryFeature.CtorCount, Is.EqualTo(0));
-            Assert.That(SecondaryFeature.CtorCount, Is.EqualTo(0));
-        }
-
-        [Test]
         public void Optional_features_can_throw_during_initialization_without_causing_other_features_to_fail_to_load()
         {
             SecondaryFeature.OnCtor = f => { throw new Exception("oops!"); };

@@ -109,10 +109,7 @@ namespace Its.Configuration
         }
 
         /// <summary>
-        ///     Implements the default settings deserialization method, which is to deserialize the specified string using
-        ///     <see
-        ///         cref="JavaScriptSerializer" />
-        ///     .
+        ///     Implements the default settings deserialization method, which is to deserialize the specified string using <see cref="JavaScriptSerializer" />
         /// </summary>
         public static object DeserializeDefault(Type targetType, string serialized)
         {

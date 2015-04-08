@@ -64,6 +64,7 @@
     <Compile Include="..\ProductInfo.cs">
       <Link>Properties\ProductInfo.cs</Link>
     </Compile>
+    <Compile Include="CompositionExtensions.cs" />
     <Compile Include="Feature.cs" />
     <Compile Include="FeatureActivationInfo.cs" />
     <Compile Include="FeatureActivator.cs" />

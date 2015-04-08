@@ -11,7 +11,6 @@ namespace Its.Recipes
     /// </summary>
 #if !RecipesProject
     [System.Diagnostics.DebuggerStepThrough]
-    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 #endif
     internal class AnonymousDisposable : IDisposable
     {
