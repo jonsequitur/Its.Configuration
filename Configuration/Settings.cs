@@ -389,5 +389,14 @@ namespace Its.Configuration
             }
         }
 
+        /// <summary>
+        /// Sets the <paramref name="setting"/> object to be returned when <see cref="Get{T}"/> is called for the specified <typeparamref name="TSetting"/>.
+        /// </summary>
+        /// <typeparam name="TSetting">The type of the setting.</typeparam>
+        /// <param name="setting">The setting to return when <see cref="Get{T}"/> is called for the specified <typeparamref name="TSetting"/>.</param>
+        public static void Set<TSetting>(TSetting setting)
+        {
+            resolvedSettings[typeof(TSetting)] = setting;
+        }
     }
 }
