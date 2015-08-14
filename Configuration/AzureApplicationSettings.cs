@@ -66,7 +66,7 @@ namespace Its.Configuration
                     try
                     {
                         isAvailable = isAvailableProperty != null && (bool)isAvailableProperty.GetValue(null, new object[] { });
-                        string message = string.Format(CultureInfo.InvariantCulture, "Loaded \"{0}\"", assembly.FullName);
+                        var message = string.Format(CultureInfo.InvariantCulture, "Loaded \"{0}\"", assembly.FullName);
 
                         if (isAvailable)
                         {
