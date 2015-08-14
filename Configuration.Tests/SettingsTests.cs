@@ -176,6 +176,30 @@ namespace Its.Configuration.Tests
         }
 
         [Test]
+        public void When_Settings_Set_is_used_to_set_a_value_for_a_type_then_Get_returns_that_value()
+        {
+            Func<EnvironmentSettings> settingsCreator = () => new EnvironmentSettings { IsLocal = true, IsTest = false, Name = "explicit_set" };
+            Settings.Set(settingsCreator());
+
+            var settings = Settings.Get<EnvironmentSettings>();
+
+            settings.ShouldBeEquivalentTo(settingsCreator());
+        }
+
+        [Test]
+        public void When_Settings_Set_is_used_to_set_a_value_for_a_type_and_precedence_is_also_configured_then_Get_returns_the_set_value_instead_of_the_one_found_in_the_precedence_specified_settings()
+        {
+            Settings.Precedence = new[] { "test" };
+
+            Func<EnvironmentSettings> settingsCreator = () => new EnvironmentSettings { IsLocal = true, IsTest = false, Name = "explicit_set" };
+            Settings.Set(settingsCreator());
+
+            var settings = Settings.Get<EnvironmentSettings>();
+
+            settings.ShouldBeEquivalentTo(settingsCreator());
+        }
+
+        [Test]
         public void When_an_order_of_precedence_is_specified_then_setting_files_in_the_root_are_used_if_not_found_in_a_subfolder()
         {
             Settings.Precedence = new[] { "production" };
