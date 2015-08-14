@@ -8,3 +8,4 @@ obj/
 packages/
 TestResults/
 _ReSharper.*
+*.xml
