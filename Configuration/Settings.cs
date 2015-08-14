@@ -396,6 +396,11 @@ namespace Its.Configuration
         /// <param name="setting">The setting to return when <see cref="Get{T}"/> is called for the specified <typeparamref name="TSetting"/>.</param>
         public static void Set<TSetting>(TSetting setting)
         {
+            if (setting == null)
+            {
+                throw new ArgumentNullException("setting");
+            }
+
             resolvedSettings[typeof(TSetting)] = setting;
         }
     }
