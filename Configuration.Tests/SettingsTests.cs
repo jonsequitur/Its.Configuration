@@ -114,6 +114,25 @@ namespace Its.Configuration.Tests
         }
 
         [Test]
+        public void Settings_can_be_resolved_from_a_file_name_that_does_not_match_the_class_name()
+        {
+            Settings.GetSerializedSetting = name =>
+            {
+                var fileInfo = Settings.GetFile(f =>
+                                                    f.Name.Equals((name + ".json")
+                                                                      .Replace("NotNamed", ""),
+                                                                  StringComparison.InvariantCultureIgnoreCase));
+                return File.ReadAllText(fileInfo.FullName);
+            };
+
+            var settings = Settings.Get<NotNamedEnvironmentSettings>();
+
+            settings.Name.Should().Be("test");
+            settings.IsLocal.Should().BeFalse();
+            settings.IsTest.Should().BeTrue();
+        }
+
+        [Test]
         public void Config_folder_selection_is_case_insensitive()
         {
             Settings.Precedence = new[] { "PRODUCTION" }; // the actual folder name is "production"
@@ -464,6 +483,13 @@ namespace Its.Configuration.Tests
             public string Value { get; set; }
         }
 
+        public class NotNamedEnvironmentSettings
+        {
+            public string Name { get; set; }
+            public bool IsLocal { get; set; }
+            public bool IsTest { get; set; }
+        }
+
         public class DerivedFromAbstractSettings : AbstractSettings
         {
         }
@@ -485,10 +511,6 @@ namespace Its.Configuration.Tests
                     handler( message);
                 }
             }
-
-
         }
     }
-
-    
 }
