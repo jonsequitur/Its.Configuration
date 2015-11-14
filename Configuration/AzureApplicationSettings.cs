@@ -210,10 +210,9 @@ namespace Its.Configuration
 
             foreach (string assemblyName in knownAssemblyNames)
             {
-                string assemblyPath = NativeMethods.GetAssemblyPath(assemblyName);
-
                 try
                 {
+                    string assemblyPath = NativeMethods.GetAssemblyPath(assemblyName);
                     if (!string.IsNullOrEmpty(assemblyPath))
                     {
                         assembly = Assembly.LoadFrom(assemblyPath);
@@ -225,7 +224,8 @@ namespace Its.Configuration
                     // and load the configuration from application settings instead of using ServiceRuntime.
                     if (!(e is FileNotFoundException || 
                           e is FileLoadException || 
-                          e is BadImageFormatException))
+                          e is BadImageFormatException||
+                          e is DllNotFoundException))
                     {
                         throw;
                     }
