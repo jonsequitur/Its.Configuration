@@ -26,4 +26,4 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("Its.Configuration.Features")]
 
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.2-beta")]
+[assembly: AssemblyFileVersion("1.0.3")]
