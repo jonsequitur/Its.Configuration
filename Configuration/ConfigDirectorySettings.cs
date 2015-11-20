@@ -107,11 +107,7 @@ namespace Its.Configuration
                                             }
                                             catch (CryptographicException exception)
                                             {
-                                                Trace.WriteLine(string.Format(
-                                                    "Handled exception while trying to load certificate {0} for key {1}: {2}",
-                                                    f.FullName,
-                                                    key,
-                                                    exception));
+                                                Debug.WriteLine("Handled exception while trying to load certificate {0} for key {1}: {2}", f.FullName, key, exception);
                                             }
 
                                             return null;
