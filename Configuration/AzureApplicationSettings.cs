@@ -120,8 +120,6 @@ namespace Its.Configuration
         /// <returns>Setting value or null if such setting does not exist.</returns>
         internal string GetSetting(string name)
         {
-            Debug.Assert(!string.IsNullOrEmpty(name));
-
             string value = null;
 
             value = GetValue("ServiceRuntime", name, GetServiceRuntimeSetting);
