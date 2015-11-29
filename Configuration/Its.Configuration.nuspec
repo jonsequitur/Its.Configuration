@@ -12,7 +12,7 @@
     <description>App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.</description>
     <tags>configuration encryption Azure</tags>
     <dependencies>
-      <dependency id="NewtonSoft.Json" version="[6.0.8,)" />
+      <dependency id="Newtonsoft.Json" version="[6.0.8,)" />
     </dependencies>
   </metadata>
 </package>
