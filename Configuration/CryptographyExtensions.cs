@@ -42,8 +42,16 @@ namespace Its.Configuration
             var store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
 
             store.Open(OpenFlags.ReadOnly);
-            
-            var certCollection = store.Certificates;
+
+            X509Certificate2Collection certCollection;
+            try
+            {
+                certCollection = store.Certificates;
+            }
+            finally
+            {
+                store.Close();
+            }
 
             if (certificates != null && certificates.Length > 0)
             {
