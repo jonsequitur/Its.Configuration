@@ -39,19 +39,7 @@ namespace Its.Configuration
         /// <returns>The decrypted text.</returns>
         public static string Decrypt(this string ciphertext, params X509Certificate2[] certificates)
         {
-            var store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
-
-            store.Open(OpenFlags.ReadOnly);
-
-            X509Certificate2Collection certCollection;
-            try
-            {
-                certCollection = store.Certificates;
-            }
-            finally
-            {
-                store.Close();
-            }
+            var certCollection = new X509Certificate2Collection(Settings.GetCertificatesFromStore().ToArray());
 
             if (certificates != null && certificates.Length > 0)
             {
