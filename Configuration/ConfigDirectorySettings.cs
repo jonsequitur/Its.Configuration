@@ -91,28 +91,7 @@ namespace Its.Configuration
             {
                 if (secureSettings.Contains(key))
                 {
-                    var certs = Settings.GetFiles()
-                                        .Where(f => string.Equals(f.Extension, ".pfx", StringComparison.OrdinalIgnoreCase))
-                                        .Select(f =>
-                                        {
-                                            try
-                                            {
-                                                var password = Settings.CertificatePassword(f.Name);
-                                                if (password != null)
-                                                {
-                                                    return new X509Certificate2(f.FullName, password);
-                                                }
-
-                                                return new X509Certificate2(f.FullName);
-                                            }
-                                            catch (CryptographicException exception)
-                                            {
-                                                Debug.WriteLine("Handled exception while trying to load certificate {0} for key {1}: {2}", f.FullName, key, exception);
-                                            }
-
-                                            return null;
-                                        })
-                                        .Where(c => c != null);
+                    var certs = Settings.GetCertificatesFromConfigDirectory();
 
                     return value.Decrypt(certs.ToArray());
                 }

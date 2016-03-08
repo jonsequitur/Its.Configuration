@@ -8,7 +8,10 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Security;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Script.Serialization;
 using Its.Recipes;
 
@@ -31,7 +34,7 @@ namespace Its.Configuration
             var values = new string[0];
             var configuredPrecedence = AppSetting("Its.Configuration.Settings.Precedence");
 
-            if (!string.IsNullOrWhiteSpace(configuredPrecedence))
+            if (!String.IsNullOrWhiteSpace(configuredPrecedence))
             {
                 values = configuredPrecedence.Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
             }
@@ -75,7 +78,7 @@ namespace Its.Configuration
         {
             return Sources
                 .Select(source => new { source, value = source.GetSerializedSetting(key) })
-                .Where(t => !string.IsNullOrWhiteSpace(t.value))
+                .Where(t => !String.IsNullOrWhiteSpace(t.value))
                 .Do(t => LogCreation(key, t.source.Name))
                 .Select(t => t.value)
                 .FirstOrDefault();
@@ -209,7 +212,7 @@ namespace Its.Configuration
         public static string AppSetting(string key)
         {
             var value = Environment.GetEnvironmentVariable(key);
-            if (!string.IsNullOrWhiteSpace(value))
+            if (!String.IsNullOrWhiteSpace(value))
             {
                 return value;
             }
@@ -217,7 +220,7 @@ namespace Its.Configuration
             if (azureSettings.IsAvailable)
             {
                 value = azureSettings.GetSerializedSetting(key);
-                if (!string.IsNullOrWhiteSpace(value))
+                if (!String.IsNullOrWhiteSpace(value))
                 {
                     return value;
                 }
@@ -250,7 +253,7 @@ namespace Its.Configuration
 
         internal static void LogCreation(string key, string source)
         {
-            Trace.WriteLine(string.Format("Resolved setting '{0}' from {1}", key, source), "Its.Configuration");
+            Trace.WriteLine(String.Format("Resolved setting '{0}' from {1}", key, source), "Its.Configuration");
         }
 
         /// <summary>
@@ -272,10 +275,10 @@ namespace Its.Configuration
 
                 if (typeof (T).IsAbstract)
                 {
-                    targetType = Discover.ConcreteTypes().Single(t => string.Equals(t.Name, Key, StringComparison.OrdinalIgnoreCase));
+                    targetType = Discover.ConcreteTypes().Single(t => String.Equals(t.Name, Key, StringComparison.OrdinalIgnoreCase));
                 }
 
-                if (!string.IsNullOrWhiteSpace(configSetting))
+                if (!String.IsNullOrWhiteSpace(configSetting))
                 {
                     Value = (T) Deserialize(targetType, configSetting);
                 }
@@ -291,14 +294,14 @@ namespace Its.Configuration
                         if (typeof (T).IsAbstract)
                         {
                             throw new ConfigurationErrorsException(
-                                string.Format(
+                                String.Format(
                                     "Settings.For is unable to create an instance of {0} because it is abstract. You should either change the class definition to be concrete or redirect settings resolution to another class by adding an appSetting entry, for example: \n    <add key=\"{1}\" value=\"{{NAME_OF_CONCRETE_TYPE}}\" />",
                                     typeof (T).AssemblyQualifiedName,
                                     typeof (T).Name));
                         }
 
                         throw new ConfigurationErrorsException(
-                            string.Format(
+                            String.Format(
                                 "Type {0} cannot be instantiated without some additional setup because it does not have a parameterless constructor. You can fix this by setting Settings<{1}>.Deserialize with a delegate that can instantiate this type.",
                                 typeof (T).AssemblyQualifiedName,
                                 typeof (T).Name));
@@ -333,7 +336,7 @@ namespace Its.Configuration
                 }
                 set
                 {
-                    if (string.IsNullOrWhiteSpace(value))
+                    if (String.IsNullOrWhiteSpace(value))
                     {
                         throw new ArgumentException("The key cannot be null, empty, or consist entirely of whitespace.");
                     }
@@ -349,7 +352,7 @@ namespace Its.Configuration
                 if (typeof (T).IsAbstract)
                 {
                     var redirectedKey = AppSetting(defaultKey);
-                    if (!string.IsNullOrWhiteSpace(redirectedKey))
+                    if (!String.IsNullOrWhiteSpace(redirectedKey))
                     {
                         return redirectedKey;
                     }
@@ -402,6 +405,53 @@ namespace Its.Configuration
             }
 
             resolvedSettings[typeof(TSetting)] = setting;
+        }
+
+        public static IEnumerable<X509Certificate2> GetCertificatesFromConfigDirectory()
+        {
+            return GetFiles()
+                .Where(f => String.Equals(f.Extension, ".pfx", StringComparison.OrdinalIgnoreCase))
+                .Select(f =>
+                {
+                    try
+                    {
+                        var password1 = CertificatePassword(f.Name);
+                        if (password1 != null)
+                        {
+                            return new X509Certificate2(f.FullName, password1);
+                        }
+
+                        return new X509Certificate2(f.FullName);
+                    }
+                    catch (CryptographicException exception)
+                    {
+                        Debug.WriteLine("Handled exception while trying to load certificate {0} : {1}", f.FullName, exception);
+                    }
+
+                    return null;
+                })
+                .Where(c => c != null);
+        }
+
+        public static IEnumerable<X509Certificate2> GetCertificatesFromStore(
+            StoreLocation storeLocation = StoreLocation.LocalMachine,
+            StoreName storeName = StoreName.My)
+        {
+            var store = new X509Store(storeName,
+                storeLocation);
+
+            store.Open(OpenFlags.ReadOnly);
+
+            X509Certificate2Collection certCollection;
+            try
+            {
+                certCollection = store.Certificates;
+            }
+            finally
+            {
+                store.Close();
+            }
+            return certCollection.OfType<X509Certificate2>();
         }
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="..\ProductInfo.cs">
       <Link>Properties\ProductInfo.cs</Link>
     </Compile>
+    <Compile Include="CertificateLoadingTests.cs" />
     <Compile Include="EncryptedSettingsTests.cs" />
     <Compile Include="SelfVerificationTests.cs" />
     <None Include=".alternateConfig\EnvironmentSettings.json">
@@ -119,6 +120,9 @@
     <None Include=".config\internal\DbConnectionSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="ItsConfigurationInstalledInStoreTest.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include=".config\OnlyConfiguredInRootFolder.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
