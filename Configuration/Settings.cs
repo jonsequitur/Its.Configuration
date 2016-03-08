@@ -8,7 +8,6 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -65,6 +64,61 @@ namespace Its.Configuration
         ///     Deserializes configuration settings.
         /// </summary>
         public static DeserializeSettings Deserialize;
+
+        /// <summary>
+        /// Gets all certificates from locations matching the current precedence within the .config directory.
+        /// </summary>
+        public static IEnumerable<X509Certificate2> GetCertificatesFromConfigDirectory()
+        {
+            return GetFiles()
+                .Where(f => String.Equals(f.Extension, ".pfx", StringComparison.OrdinalIgnoreCase))
+                .Select(f =>
+                {
+                    try
+                    {
+                        var password1 = CertificatePassword(f.Name);
+                        if (password1 != null)
+                        {
+                            return new X509Certificate2(f.FullName, password1);
+                        }
+
+                        return new X509Certificate2(f.FullName);
+                    }
+                    catch (CryptographicException exception)
+                    {
+                        Debug.WriteLine("Handled exception while trying to load certificate {0} : {1}", f.FullName, exception);
+                    }
+
+                    return null;
+                })
+                .Where(c => c != null);
+        }
+
+        /// <summary>
+        /// Gets certificates from the certificate store.
+        /// </summary>
+        /// <param name="storeLocation">The store location.</param>
+        /// <param name="storeName">The name of the store.</param>
+        public static IEnumerable<X509Certificate2> GetCertificatesFromStore(
+            StoreLocation storeLocation = StoreLocation.LocalMachine,
+            StoreName storeName = StoreName.My)
+        {
+            var store = new X509Store(storeName,
+                                      storeLocation);
+
+            store.Open(OpenFlags.ReadOnly);
+
+            X509Certificate2Collection certCollection;
+            try
+            {
+                certCollection = store.Certificates;
+            }
+            finally
+            {
+                store.Close();
+            }
+            return certCollection.OfType<X509Certificate2>();
+        }
 
         /// <summary>
         ///     Gets the value for a configuration setting corresponding to the provided key.
@@ -405,53 +459,6 @@ namespace Its.Configuration
             }
 
             resolvedSettings[typeof(TSetting)] = setting;
-        }
-
-        public static IEnumerable<X509Certificate2> GetCertificatesFromConfigDirectory()
-        {
-            return GetFiles()
-                .Where(f => String.Equals(f.Extension, ".pfx", StringComparison.OrdinalIgnoreCase))
-                .Select(f =>
-                {
-                    try
-                    {
-                        var password1 = CertificatePassword(f.Name);
-                        if (password1 != null)
-                        {
-                            return new X509Certificate2(f.FullName, password1);
-                        }
-
-                        return new X509Certificate2(f.FullName);
-                    }
-                    catch (CryptographicException exception)
-                    {
-                        Debug.WriteLine("Handled exception while trying to load certificate {0} : {1}", f.FullName, exception);
-                    }
-
-                    return null;
-                })
-                .Where(c => c != null);
-        }
-
-        public static IEnumerable<X509Certificate2> GetCertificatesFromStore(
-            StoreLocation storeLocation = StoreLocation.LocalMachine,
-            StoreName storeName = StoreName.My)
-        {
-            var store = new X509Store(storeName,
-                storeLocation);
-
-            store.Open(OpenFlags.ReadOnly);
-
-            X509Certificate2Collection certCollection;
-            try
-            {
-                certCollection = store.Certificates;
-            }
-            finally
-            {
-                store.Close();
-            }
-            return certCollection.OfType<X509Certificate2>();
         }
     }
 }
