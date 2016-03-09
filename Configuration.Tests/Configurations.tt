@@ -6,6 +6,7 @@
 <#@ assembly name="System.Web"#>
 <#@ assembly name="System.Xml.Linq" #>
 <#@ assembly name="$(TargetDir)\Its.Configuration.dll" #>
+<#@ assembly name="$(TargetDir)\Its.Configuration.Features.dll" #>
 <#@ import namespace="System"#>
 <#@ import namespace="System.IO"#>
 <#@ import namespace="System.Collections.Generic"#>
@@ -19,6 +20,7 @@
 <#@ import namespace="System.Xml"#>
 <#@ import namespace="System.Xml.Linq"#>
 <#@ import namespace="Its.Configuration"#>
+<#@ import namespace="Its.Configuration.Features"#>
 
 // ----------------------------------------------------------------------------------------------------
 // THIS .CS FILE WAS GENERATED USING T4. DO NOT EDIT IT DIRECTLY--EDIT THE ASSOCIATED .TT FILE INSTEAD.
