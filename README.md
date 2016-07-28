@@ -1,8 +1,6 @@
 ## App configuration for .NET. Strong-typed, JSON file-based, host-independent, and manageable.
 
-[![Join the chat at https://gitter.im/jonsequitur/Its.Configuration](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jonsequitur/Its.Configuration?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/jonsequitur/Its.Configuration?svg=true&branch=master)](https://ci.appveyor.com/project/jonsequitur/its-configuration) [![NuGet Status](http://img.shields.io/nuget/v/Its.Configuration.svg?style=flat)](https://www.nuget.org/packages/Its.Configuration/)
+[![Join the chat at https://gitter.im/jonsequitur/Its.Configuration](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jonsequitur/Its.Configuration?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://ci.appveyor.com/api/projects/status/github/jonsequitur/Its.Configuration?svg=true&branch=master)](https://ci.appveyor.com/project/jonsequitur/its-configuration) [![NuGet Status](http://img.shields.io/nuget/v/Its.Configuration.svg?style=flat)](https://www.nuget.org/packages/Its.Configuration/)
 
 Most bugs in deployed services arise from configuration errors. Configuration in .NET usually consists of code calling ConfigurationManager.AppSettings or RoleEnvironment.GetConfigurationSettingValue to get a keyed value from an XML file, and casting it to an expected type. This tends to fail at a number of points: missing values, unconvertable values, non-obvious default behaviors. Managing configurations for diverse environments tends to amplify these problems. And of course Azure has a different configuration mechanism from vanilla ASP.NET applications.
 
